@@ -5,6 +5,7 @@ import { AIAvatar } from "@/components/shared/AIAvatar";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { StudyHoursChart, SubjectProgressChart } from "@/components/dashboard/StudyChart";
 import {
   LayoutDashboard,
   BookOpen,
@@ -127,26 +128,9 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Progress Section */}
-          <Card className="p-6">
-            <h3 className="font-semibold text-lg mb-4">Tiến độ tuần này</h3>
-            <div className="space-y-4">
-              {[
-                { subject: "Toán học", progress: 75, color: "bg-primary" },
-                { subject: "Vật lý", progress: 60, color: "bg-success" },
-                { subject: "Tiếng Anh", progress: 85, color: "bg-accent" },
-                { subject: "Hóa học", progress: 45, color: "bg-wellness" },
-              ].map((item) => (
-                <div key={item.subject}>
-                  <div className="flex justify-between text-sm mb-1">
-                    <span className="font-medium">{item.subject}</span>
-                    <span className="text-muted-foreground">{item.progress}%</span>
-                  </div>
-                  <Progress value={item.progress} className="h-2" />
-                </div>
-              ))}
-            </div>
-          </Card>
+          {/* Charts Section */}
+          <StudyHoursChart />
+          <SubjectProgressChart />
         </div>
 
         {/* Sidebar */}
@@ -185,6 +169,27 @@ export default function Dashboard() {
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
+          </Card>
+
+          {/* Weekly Progress Mini */}
+          <Card className="p-6">
+            <h3 className="font-semibold text-lg mb-4">Tiến độ tuần này</h3>
+            <div className="space-y-4">
+              {[
+                { subject: "Toán học", progress: 75, color: "bg-primary" },
+                { subject: "Vật lý", progress: 60, color: "bg-success" },
+                { subject: "Tiếng Anh", progress: 85, color: "bg-accent" },
+                { subject: "Hóa học", progress: 45, color: "bg-wellness" },
+              ].map((item) => (
+                <div key={item.subject}>
+                  <div className="flex justify-between text-sm mb-1">
+                    <span className="font-medium">{item.subject}</span>
+                    <span className="text-muted-foreground">{item.progress}%</span>
+                  </div>
+                  <Progress value={item.progress} className="h-2" />
+                </div>
+              ))}
+            </div>
           </Card>
 
           {/* Recent Activities */}
