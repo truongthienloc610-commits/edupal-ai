@@ -162,7 +162,7 @@ export default function Settings() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-medium">Tính năng mới</p>
-                  <p className="text-sm text-muted-foreground">Thông báo khi có tính năng mới trên EduLife AI</p>
+                  <p className="text-sm text-muted-foreground">Thông báo khi có tính năng mới trên KMA-RES AI</p>
                 </div>
                 <Switch
                   checked={notifications.newFeatures}

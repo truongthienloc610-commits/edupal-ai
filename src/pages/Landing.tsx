@@ -78,7 +78,7 @@ export default function Landing() {
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
               <Sparkles className="w-6 h-6 text-primary-foreground" />
             </div>
-            <span className="font-bold text-xl">EduLife AI</span>
+            <span className="font-bold text-xl">KMA-RES AI</span>
           </div>
           <nav className="hidden md:flex items-center gap-6">
             <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -111,7 +111,7 @@ export default function Landing() {
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
                 Học thông minh hơn với{" "}
-                <span className="gradient-text">EduLife AI</span>
+                <span className="gradient-text">KMA-RES AI</span>
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl animate-fade-in" style={{ animationDelay: "0.2s" }}>
                 Trợ lý AI toàn diện giúp bạn học tập hiệu quả, quản lý thời gian, 
@@ -140,8 +140,8 @@ export default function Landing() {
                   ))}
                 </div>
                 <div className="text-left">
-                  <p className="font-semibold text-foreground">10,000+ học sinh</p>
-                  <p className="text-sm text-muted-foreground">đang sử dụng EduLife AI</p>
+                <p className="font-semibold text-foreground">10,000+ học sinh</p>
+                <p className="text-sm text-muted-foreground">đang sử dụng KMA-RES AI</p>
                 </div>
               </div>
             </div>
@@ -152,7 +152,7 @@ export default function Landing() {
                   <div className="flex items-start gap-4 mb-6">
                     <AIAvatar size="lg" />
                     <div>
-                      <h3 className="font-semibold text-lg">Xin chào! Mình là EduLife AI 👋</h3>
+                      <h3 className="font-semibold text-lg">Xin chào! Mình là KMA-RES AI 👋</h3>
                       <p className="text-muted-foreground mt-1">
                         Mình sẽ giúp bạn học tập hiệu quả hơn, quản lý thời gian tốt hơn và phát triển bản thân mỗi ngày!
                       </p>
@@ -185,7 +185,7 @@ export default function Landing() {
               Tất cả trong một nền tảng
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              EduLife AI tích hợp đầy đủ công cụ hỗ trợ học sinh, sinh viên trong mọi khía cạnh của việc học tập và phát triển bản thân.
+              KMA-RES AI tích hợp đầy đủ công cụ hỗ trợ học sinh, sinh viên trong mọi khía cạnh của việc học tập và phát triển bản thân.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -210,13 +210,13 @@ export default function Landing() {
       <section id="about" className="py-20 px-4">
         <div className="container max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="flex-1">
+          <div className="flex-1">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Tại sao chọn EduLife AI?
+                Tại sao chọn KMA-RES AI?
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
                 Được phát triển bởi đội ngũ chuyên gia giáo dục và công nghệ, 
-                EduLife AI mang đến trải nghiệm học tập được cá nhân hóa hoàn toàn cho bạn.
+                KMA-RES AI mang đến trải nghiệm học tập được cá nhân hóa hoàn toàn cho bạn.
               </p>
               <div className="space-y-4">
                 {benefits.map((benefit, index) => (
@@ -266,7 +266,7 @@ export default function Landing() {
               Sẵn sàng học thông minh hơn?
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Tham gia cùng hàng ngàn học sinh, sinh viên đang sử dụng EduLife AI 
+              Tham gia cùng hàng ngàn học sinh, sinh viên đang sử dụng KMA-RES AI 
               để đạt được mục tiêu học tập của mình.
             </p>
             <Link to="/dashboard">
@@ -284,10 +284,10 @@ export default function Landing() {
         <div className="container max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-primary" />
-            <span className="font-semibold">EduLife AI</span>
+            <span className="font-semibold">KMA-RES AI</span>
           </div>
           <p className="text-sm text-muted-foreground text-center">
-            © 2024 EduLife AI. Tất cả quyền được bảo lưu.
+            © 2024 KMA-RES AI. Tất cả quyền được bảo lưu.
           </p>
           <div className="flex items-center gap-4">
             <Link to="/about" className="text-sm text-muted-foreground hover:text-foreground">
