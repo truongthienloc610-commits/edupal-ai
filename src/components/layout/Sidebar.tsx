@@ -71,7 +71,7 @@ export const Sidebar = () => {
         </div>
         {!collapsed && (
           <div className="flex flex-col">
-            <span className="font-bold text-sidebar-foreground text-lg">EduLife AI</span>
+            <span className="font-bold text-sidebar-foreground text-lg">KMA-RES AI</span>
             <span className="text-xs text-sidebar-foreground/50">Trợ lý học tập thông minh</span>
           </div>
         )}

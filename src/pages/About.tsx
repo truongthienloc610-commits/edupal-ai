@@ -29,7 +29,7 @@ export default function About() {
           <div className="flex items-start gap-6">
             <AIAvatar size="lg" animated={false} />
             <div>
-              <h2 className="text-2xl font-bold mb-2">EduLife AI</h2>
+              <h2 className="text-2xl font-bold mb-2">KMA-RES AI</h2>
               <p className="text-muted-foreground mb-4">
                 Nền tảng trợ lý AI toàn diện hỗ trợ học sinh, sinh viên trong học tập, 
                 quản lý thời gian, chăm sóc sức khỏe tinh thần và định hướng nghề nghiệp.
@@ -52,7 +52,7 @@ export default function About() {
             <h3 className="font-semibold text-lg">Sứ mệnh</h3>
           </div>
           <p className="text-muted-foreground">
-            EduLife AI được phát triển với mục tiêu tạo ra một công cụ học tập thông minh, 
+            KMA-RES AI được phát triển với mục tiêu tạo ra một công cụ học tập thông minh, 
             giúp mọi học sinh, sinh viên Việt Nam có thể tiếp cận phương pháp học tập hiệu quả, 
             cá nhân hóa và toàn diện. Chúng tôi tin rằng mỗi người học đều xứng đáng có một 
             trợ lý AI riêng để đồng hành trong suốt hành trình học tập.
@@ -111,7 +111,7 @@ export default function About() {
             <div>
               <h4 className="font-medium text-foreground mb-1">1. Mục đích sử dụng</h4>
               <p>
-                EduLife AI được thiết kế để hỗ trợ học tập và phát triển cá nhân. 
+                KMA-RES AI được thiết kế để hỗ trợ học tập và phát triển cá nhân. 
                 Người dùng cam kết sử dụng nền tảng cho mục đích học tập chính đáng.
               </p>
             </div>
@@ -133,7 +133,7 @@ export default function About() {
             <div>
               <h4 className="font-medium text-foreground mb-1">4. Quyền sở hữu trí tuệ</h4>
               <p>
-                Nội dung và thiết kế của EduLife AI thuộc quyền sở hữu của nhóm phát triển. 
+                Nội dung và thiết kế của KMA-RES AI thuộc quyền sở hữu của nhóm phát triển. 
                 Người dùng không được sao chép hoặc phân phối lại mà không có sự cho phép.
               </p>
             </div>
@@ -162,7 +162,7 @@ export default function About() {
 
         {/* Footer */}
         <div className="text-center text-sm text-muted-foreground py-4">
-          <p>© 2024 EduLife AI. Phát triển cho cuộc thi ý tưởng công nghệ giáo dục.</p>
+          <p>© 2024 KMA-RES AI. Phát triển cho cuộc thi ý tưởng công nghệ giáo dục.</p>
           <p className="mt-1">Phiên bản 1.0.0 | Made with ❤️ in Vietnam</p>
         </div>
       </div>
