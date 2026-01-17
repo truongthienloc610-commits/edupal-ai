@@ -18,7 +18,7 @@ import {
   Calendar,
   Target,
 } from "lucide-react";
-import { generateLearningPlan, type LearningPlan } from "@/lib/mockAI";
+import { generateLearningPlan, type LearningPlan } from "@/lib/ai";
 
 export default function Learning() {
   const [subject, setSubject] = useState("");
@@ -36,6 +36,8 @@ export default function Learning() {
       setPlan(result);
     } catch (error) {
       console.error(error);
+      const { toast } = await import("sonner");
+      toast.error("Không thể tạo lộ trình học. Vui lòng thử lại.");
     } finally {
       setLoading(false);
     }

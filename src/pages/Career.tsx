@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { AIAvatar } from "@/components/shared/AIAvatar";
@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Progress } from "@/components/ui/progress";
 import {
   Briefcase,
   Sparkles,
@@ -21,22 +20,16 @@ import {
   User,
   Star,
 } from "lucide-react";
-import { suggestCareers, generateCV, type CareerSuggestion } from "@/lib/mockAI";
+import { suggestCareers, generateCV, streamChat, type CareerSuggestion } from "@/lib/ai";
+import { toast } from "sonner";
 
 const sampleInterests = ["Công nghệ", "Sáng tạo", "Kinh doanh", "Nghiên cứu", "Giảng dạy", "Thiết kế"];
 const sampleSkills = ["Giao tiếp", "Làm việc nhóm", "Phân tích", "Sáng tạo", "Lập trình", "Tiếng Anh"];
 
 interface ChatMessage {
-  role: "user" | "ai";
+  role: "user" | "assistant";
   content: string;
 }
-
-const careerChatResponses: Record<string, string> = {
-  "lương": "Mức lương trong ngành công nghệ thông tin tại Việt Nam khá hấp dẫn. Fresher: 8-15 triệu/tháng, Junior (1-2 năm): 15-25 triệu, Middle (3-5 năm): 25-40 triệu, Senior (5+ năm): 40-80+ triệu. Tuy nhiên, mức lương còn phụ thuộc vào công ty và kỹ năng cá nhân.",
-  "kinh nghiệm": "Để có kinh nghiệm khi chưa đi làm, bạn có thể: 1) Tham gia dự án nhóm ở trường, 2) Làm freelance, 3) Thực tập sớm từ năm 2-3, 4) Xây dựng portfolio cá nhân, 5) Đóng góp cho dự án mã nguồn mở, 6) Tham gia các cuộc thi lập trình/hackathon.",
-  "cv": "Một CV tốt cần có: 1) Thông tin liên lạc rõ ràng, 2) Mục tiêu nghề nghiệp ngắn gọn, 3) Học vấn và chứng chỉ, 4) Kinh nghiệm (nếu có), 5) Kỹ năng cứng và mềm, 6) Dự án đã làm. Hãy giữ CV trong 1 trang và tùy chỉnh cho từng vị trí.",
-  "phỏng vấn": "Để chuẩn bị phỏng vấn tốt: 1) Nghiên cứu kỹ về công ty, 2) Chuẩn bị câu trả lời cho các câu hỏi phổ biến, 3) Chuẩn bị câu hỏi để hỏi nhà tuyển dụng, 4) Ăn mặc phù hợp, 5) Đến sớm 10-15 phút, 6) Mang theo CV và portfolio.",
-};
 
 export default function Career() {
   const [interests, setInterests] = useState<string[]>([]);
@@ -58,9 +51,18 @@ export default function Career() {
 
   // Chatbot
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
-    { role: "ai", content: "Xin chào! Mình là trợ lý tư vấn nghề nghiệp. Bạn có thể hỏi mình về lương, kinh nghiệm, CV, phỏng vấn hoặc bất kỳ vấn đề gì về nghề nghiệp!" }
+    { role: "assistant", content: "Xin chào! Mình là trợ lý tư vấn nghề nghiệp AI sử dụng Gemini. Bạn có thể hỏi mình về lương, kinh nghiệm, CV, phỏng vấn hoặc bất kỳ vấn đề gì về nghề nghiệp!" }
   ]);
   const [chatInput, setChatInput] = useState("");
+  const [chatLoading, setChatLoading] = useState(false);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll chat
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [chatMessages]);
 
   const toggleInterest = (interest: string) => {
     setInterests(prev =>
@@ -87,6 +89,7 @@ export default function Career() {
       setSuggestions(result);
     } catch (error) {
       console.error(error);
+      toast.error("Không thể lấy gợi ý nghề nghiệp. Vui lòng thử lại.");
     } finally {
       setLoading(false);
     }
@@ -101,41 +104,51 @@ export default function Career() {
       setGeneratedCV(cv);
     } catch (error) {
       console.error(error);
+      toast.error("Không thể tạo CV. Vui lòng thử lại.");
     } finally {
       setCvLoading(false);
     }
   };
 
-  const handleChat = () => {
-    if (!chatInput.trim()) return;
+  const handleChat = async () => {
+    if (!chatInput.trim() || chatLoading) return;
     
     const userMessage: ChatMessage = { role: "user", content: chatInput };
     setChatMessages(prev => [...prev, userMessage]);
-    
-    // Simple keyword matching for demo
-    setTimeout(() => {
-      let response = "Cảm ơn câu hỏi của bạn! Để tư vấn chính xác hơn, bạn có thể cung cấp thêm thông tin về lĩnh vực bạn quan tâm không?";
-      
-      const lowerInput = chatInput.toLowerCase();
-      for (const [keyword, answer] of Object.entries(careerChatResponses)) {
-        if (lowerInput.includes(keyword)) {
-          response = answer;
-          break;
-        }
-      }
-      
-      const aiMessage: ChatMessage = { role: "ai", content: response };
-      setChatMessages(prev => [...prev, aiMessage]);
-    }, 1000);
-    
     setChatInput("");
+    setChatLoading(true);
+
+    let assistantContent = "";
+    
+    // Add empty assistant message that will be updated
+    setChatMessages(prev => [...prev, { role: "assistant", content: "" }]);
+
+    await streamChat({
+      messages: [...chatMessages, userMessage],
+      onDelta: (chunk) => {
+        assistantContent += chunk;
+        setChatMessages(prev => {
+          const newMessages = [...prev];
+          newMessages[newMessages.length - 1] = { role: "assistant", content: assistantContent };
+          return newMessages;
+        });
+      },
+      onDone: () => {
+        setChatLoading(false);
+      },
+      onError: (error) => {
+        console.error(error);
+        toast.error("Có lỗi xảy ra. Vui lòng thử lại.");
+        setChatLoading(false);
+      },
+    });
   };
 
   return (
     <DashboardLayout>
       <PageHeader
         title="Định hướng nghề nghiệp"
-        description="Khám phá ngành nghề phù hợp và phát triển kỹ năng"
+        description="Khám phá ngành nghề phù hợp và phát triển kỹ năng với AI Gemini"
         icon={<Briefcase className="w-6 h-6" />}
       />
 
@@ -151,7 +164,7 @@ export default function Career() {
           </TabsTrigger>
           <TabsTrigger value="chat" className="gap-2">
             <MessageCircle className="w-4 h-4" />
-            Hỏi đáp
+            Hỏi đáp AI
           </TabsTrigger>
         </TabsList>
 
@@ -377,7 +390,7 @@ export default function Career() {
             <Card className="p-6">
               <h3 className="font-semibold text-lg mb-4">CV của bạn</h3>
               {generatedCV ? (
-                <pre className="p-4 bg-muted rounded-lg font-mono text-sm whitespace-pre overflow-x-auto">
+                <pre className="p-4 bg-muted rounded-lg font-mono text-sm whitespace-pre-wrap overflow-x-auto">
                   {generatedCV}
                 </pre>
               ) : (
@@ -400,12 +413,12 @@ export default function Career() {
             <div className="p-4 border-b flex items-center gap-3">
               <AIAvatar size="sm" />
               <div>
-                <h3 className="font-semibold">Trợ lý tư vấn nghề nghiệp</h3>
-                <p className="text-xs text-muted-foreground">Hỏi bất kỳ điều gì về nghề nghiệp</p>
+                <h3 className="font-semibold">Trợ lý tư vấn nghề nghiệp AI</h3>
+                <p className="text-xs text-muted-foreground">Powered by Gemini - Hỏi bất kỳ điều gì về nghề nghiệp</p>
               </div>
             </div>
 
-            <div className="h-[400px] overflow-y-auto p-4 space-y-4">
+            <div ref={chatContainerRef} className="h-[400px] overflow-y-auto p-4 space-y-4">
               {chatMessages.map((msg, index) => (
                 <div
                   key={index}
@@ -418,7 +431,7 @@ export default function Career() {
                         : "bg-muted rounded-bl-md"
                     }`}
                   >
-                    <p className="text-sm whitespace-pre-line">{msg.content}</p>
+                    <p className="text-sm whitespace-pre-line">{msg.content || (chatLoading ? "..." : "")}</p>
                   </div>
                 </div>
               ))}
@@ -432,9 +445,10 @@ export default function Career() {
                   onKeyPress={(e) => e.key === "Enter" && handleChat()}
                   placeholder="Hỏi về lương, kinh nghiệm, CV, phỏng vấn..."
                   className="flex-1"
+                  disabled={chatLoading}
                 />
-                <Button onClick={handleChat} disabled={!chatInput.trim()}>
-                  <Send className="w-4 h-4" />
+                <Button onClick={handleChat} disabled={!chatInput.trim() || chatLoading}>
+                  {chatLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                 </Button>
               </div>
             </div>

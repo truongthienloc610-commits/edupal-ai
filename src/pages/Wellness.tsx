@@ -20,7 +20,7 @@ import {
   Coffee,
   Zap,
 } from "lucide-react";
-import { analyzeWellness, type WellnessAdvice, type WellnessCheckIn } from "@/lib/mockAI";
+import { analyzeWellness, type WellnessAdvice, type WellnessCheckIn } from "@/lib/ai";
 import { cn } from "@/lib/utils";
 
 const moodOptions = [
@@ -63,6 +63,8 @@ export default function Wellness() {
       setAdvice(result);
     } catch (error) {
       console.error(error);
+      const { toast } = await import("sonner");
+      toast.error("Không thể phân tích sức khỏe. Vui lòng thử lại.");
     } finally {
       setLoading(false);
     }
