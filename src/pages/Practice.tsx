@@ -16,7 +16,7 @@ import {
   Brain,
   Lightbulb,
 } from "lucide-react";
-import { sampleQuestions, type QuizQuestion } from "@/lib/mockAI";
+import { sampleQuestions, type QuizQuestion } from "@/lib/ai";
 import { cn } from "@/lib/utils";
 
 export default function Practice() {

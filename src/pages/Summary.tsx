@@ -17,7 +17,7 @@ import {
   Copy,
   Check,
 } from "lucide-react";
-import { summarizeContent, type SummaryResult } from "@/lib/mockAI";
+import { summarizeContent, type SummaryResult } from "@/lib/ai";
 
 export default function Summary() {
   const [content, setContent] = useState("");
@@ -34,6 +34,8 @@ export default function Summary() {
       setResult(summary);
     } catch (error) {
       console.error(error);
+      const { toast } = await import("sonner");
+      toast.error("Không thể tóm tắt nội dung. Vui lòng thử lại.");
     } finally {
       setLoading(false);
     }
