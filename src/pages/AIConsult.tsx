@@ -12,10 +12,13 @@ import { toast } from "sonner";
 import {
   MessageCircle,
   Send,
-  AlertTriangle,
   Sparkles,
   User,
   Loader2,
+  BookOpen,
+  Brain,
+  Target,
+  Briefcase,
 } from "lucide-react";
 
 interface ChatMessage {
@@ -24,10 +27,10 @@ interface ChatMessage {
 }
 
 const suggestedQuestions = [
-  "Triệu chứng đau đầu kéo dài nên làm gì?",
-  "Thuốc giảm đau nào an toàn nhất?",
-  "Cách kiểm soát huyết áp cao?",
-  "Khi nào cần đi khám bác sĩ ngay?",
+  "Giải thích định lý Pytago dễ hiểu",
+  "Cách học từ vựng tiếng Anh hiệu quả?",
+  "Tóm tắt bài Chiến tranh thế giới thứ 2",
+  "Làm sao để tập trung học tốt hơn?",
 ];
 
 export default function AIConsult() {
@@ -35,7 +38,7 @@ export default function AIConsult() {
     {
       role: "assistant",
       content:
-        "Xin chào! Tôi là MediCare AI, trợ lý tư vấn sức khỏe của bạn. Tôi có thể giúp bạn tìm hiểu về triệu chứng, thuốc, và các vấn đề sức khỏe thông thường.\n\n⚠️ **Lưu ý**: Tôi chỉ cung cấp thông tin tham khảo, không thay thế tư vấn y tế chuyên nghiệp. Nếu có triệu chứng nghiêm trọng, hãy đến cơ sở y tế ngay.",
+        "Xin chào! Tôi là KMA-RES AI, trợ lý học tập thông minh của bạn. Tôi có thể giúp bạn:\n\n📚 Giải thích bài học khó hiểu\n🧠 Tạo tóm tắt và sơ đồ tư duy\n🎯 Gợi ý phương pháp học hiệu quả\n💼 Định hướng nghề nghiệp\n\nBạn cần hỗ trợ gì hôm nay?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -96,23 +99,33 @@ export default function AIConsult() {
   return (
     <DashboardLayout>
       <PageHeader
-        title="Tư vấn AI"
-        description="Chatbot AI hỗ trợ tư vấn sức khỏe 24/7"
+        title="Hỏi AI"
+        description="Trợ lý AI giải đáp mọi thắc mắc về học tập"
         icon={<MessageCircle className="w-6 h-6" />}
       />
 
       <div className="grid lg:grid-cols-4 gap-6">
         {/* Sidebar */}
         <div className="space-y-4">
-          {/* Disclaimer */}
-          <Card className="p-4 bg-warning/10 border-warning/30">
-            <div className="flex items-start gap-2">
-              <AlertTriangle className="w-5 h-5 text-warning shrink-0 mt-0.5" />
-              <div>
-                <p className="font-medium text-sm">Lưu ý quan trọng</p>
-                <p className="text-xs text-muted-foreground">
-                  AI chỉ cung cấp thông tin tham khảo, không thay thế chẩn đoán y khoa.
-                </p>
+          {/* Features */}
+          <Card className="p-4">
+            <h4 className="font-medium mb-3">AI có thể giúp bạn</h4>
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <BookOpen className="w-4 h-4 text-primary" />
+                <span>Giải thích bài học</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Brain className="w-4 h-4 text-accent" />
+                <span>Tóm tắt nội dung</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Target className="w-4 h-4 text-success" />
+                <span>Phương pháp học</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Briefcase className="w-4 h-4 text-wellness" />
+                <span>Hướng nghiệp</span>
               </div>
             </div>
           </Card>
@@ -139,14 +152,14 @@ export default function AIConsult() {
 
           {/* Topics */}
           <Card className="p-4">
-            <h4 className="font-medium mb-3">Chủ đề hỗ trợ</h4>
+            <h4 className="font-medium mb-3">Chủ đề</h4>
             <div className="flex flex-wrap gap-2">
-              <Badge variant="outline">Triệu chứng</Badge>
-              <Badge variant="outline">Thuốc</Badge>
-              <Badge variant="outline">Dinh dưỡng</Badge>
-              <Badge variant="outline">Phòng bệnh</Badge>
-              <Badge variant="outline">Sơ cứu</Badge>
-              <Badge variant="outline">Sức khỏe tâm thần</Badge>
+              <Badge variant="outline">Toán học</Badge>
+              <Badge variant="outline">Tiếng Anh</Badge>
+              <Badge variant="outline">Vật lý</Badge>
+              <Badge variant="outline">Hóa học</Badge>
+              <Badge variant="outline">Lịch sử</Badge>
+              <Badge variant="outline">Văn học</Badge>
             </div>
           </Card>
         </div>
@@ -204,7 +217,7 @@ export default function AIConsult() {
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Nhập câu hỏi về sức khỏe..."
+                placeholder="Nhập câu hỏi về bài học..."
                 disabled={isLoading}
                 className="flex-1"
               />

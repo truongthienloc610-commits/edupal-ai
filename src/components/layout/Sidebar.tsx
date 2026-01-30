@@ -2,17 +2,18 @@ import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   LayoutDashboard,
-  Users,
-  CalendarDays,
-  FileHeart,
-  Stethoscope,
-  Activity,
+  BookOpen,
+  Brain,
+  Calendar,
+  Target,
+  Heart,
+  Briefcase,
   MessageCircle,
   Settings,
   Info,
   ChevronLeft,
   ChevronRight,
-  Heart,
+  GraduationCap,
   Menu,
   X,
 } from "lucide-react";
@@ -21,12 +22,13 @@ import { Button } from "@/components/ui/button";
 
 const menuItems = [
   { path: "/dashboard", label: "Tổng quan", icon: LayoutDashboard },
-  { path: "/patients", label: "Quản lý bệnh nhân", icon: Users },
-  { path: "/appointments", label: "Đặt lịch khám", icon: CalendarDays },
-  { path: "/health-records", label: "Hồ sơ sức khỏe", icon: FileHeart },
-  { path: "/medical-lookup", label: "Tra cứu y khoa", icon: Stethoscope },
-  { path: "/health-tracking", label: "Theo dõi sức khỏe", icon: Activity },
-  { path: "/ai-consult", label: "Tư vấn AI", icon: MessageCircle },
+  { path: "/learning", label: "Lộ trình học", icon: BookOpen },
+  { path: "/summary", label: "Tóm tắt bài", icon: Brain },
+  { path: "/schedule", label: "Lịch học", icon: Calendar },
+  { path: "/practice", label: "Luyện tập", icon: Target },
+  { path: "/wellness", label: "Sức khỏe tinh thần", icon: Heart },
+  { path: "/career", label: "Nghề nghiệp", icon: Briefcase },
+  { path: "/ai-consult", label: "Hỏi AI", icon: MessageCircle },
 ];
 
 const bottomItems = [
@@ -67,12 +69,12 @@ export const Sidebar = () => {
       {/* Logo */}
       <div className="flex items-center gap-3 px-3 py-4 mb-4">
         <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-wellness flex items-center justify-center shadow-lg">
-          <Heart className="w-6 h-6 text-primary-foreground" />
+          <GraduationCap className="w-6 h-6 text-primary-foreground" />
         </div>
         {!collapsed && (
           <div className="flex flex-col">
-            <span className="font-bold text-sidebar-foreground text-lg">MediCare AI</span>
-            <span className="text-xs text-sidebar-foreground/50">Hệ thống quản lý y tế</span>
+            <span className="font-bold text-sidebar-foreground text-lg">KMA-RES AI</span>
+            <span className="text-xs text-sidebar-foreground/50">Trợ lý học tập thông minh</span>
           </div>
         )}
       </div>
