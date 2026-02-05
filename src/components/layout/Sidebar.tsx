@@ -133,7 +133,8 @@ export const Sidebar = () => {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed md:static inset-y-0 left-0 z-40 flex flex-col bg-sidebar border-r border-sidebar-border transition-all duration-300",
+          "fixed md:static inset-y-0 left-0 z-40 flex flex-col border-r border-sidebar-border/50 transition-all duration-300",
+          "bg-sidebar/80 backdrop-blur-2xl",
           collapsed ? "w-16" : "w-64",
           mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         )}
