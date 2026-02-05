@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   BookOpen,
@@ -16,9 +16,11 @@ import {
   GraduationCap,
   Menu,
   X,
+  LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
 
 const menuItems = [
   { path: "/dashboard", label: "Tổng quan", icon: LayoutDashboard },
@@ -40,6 +42,13 @@ export const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { signOut, profile } = useAuth();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
+  };
 
   const NavItem = ({ item }: { item: typeof menuItems[0] }) => {
     const isActive = location.pathname === item.path;
@@ -90,11 +99,29 @@ export const Sidebar = () => {
       <div className="mx-4 my-4 border-t border-sidebar-border" />
 
       {/* Bottom Navigation */}
-      <nav className="px-2 pb-4 space-y-1">
+      <nav className="px-2 pb-2 space-y-1">
         {bottomItems.map((item) => (
           <NavItem key={item.path} item={item} />
         ))}
       </nav>
+
+      {/* User Info & Sign Out */}
+      <div className="px-2 pb-4 space-y-2">
+        {profile && !collapsed && (
+          <div className="px-3 py-2 text-sm text-sidebar-foreground/70 truncate">
+            {profile.display_name || "Người dùng"}
+          </div>
+        )}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={handleSignOut}
+          className="w-full justify-start gap-3 text-sidebar-foreground/70 hover:text-destructive hover:bg-destructive/10"
+        >
+          <LogOut className="w-4 h-4" />
+          {!collapsed && <span>Đăng xuất</span>}
+        </Button>
+      </div>
 
       {/* Collapse Button - Desktop only */}
       <div className="hidden md:block px-2 pb-4">

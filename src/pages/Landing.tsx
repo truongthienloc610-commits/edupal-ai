@@ -86,15 +86,18 @@ export default function Landing() {
             <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">
               Giới thiệu
             </a>
-            <Link to="/dashboard">
+            <Link to="/auth">
+              <Button variant="outline">Đăng nhập</Button>
+            </Link>
+            <Link to="/auth">
               <Button variant="gradient">
-                Bắt đầu ngay
+                Đăng ký
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
           </nav>
-          <Link to="/dashboard" className="md:hidden">
-            <Button size="sm" variant="gradient">Bắt đầu</Button>
+          <Link to="/auth" className="md:hidden">
+            <Button size="sm" variant="gradient">Đăng nhập</Button>
           </Link>
         </div>
       </header>
@@ -117,7 +120,7 @@ export default function Landing() {
                 tóm tắt bài học, quản lý thời gian và chăm sóc sức khỏe tinh thần.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in" style={{ animationDelay: "0.3s" }}>
-                <Link to="/dashboard">
+                <Link to="/auth">
                   <Button size="xl" variant="hero" className="w-full sm:w-auto">
                     Khám phá ngay
                     <ArrowRight className="w-5 h-5" />
@@ -227,7 +230,7 @@ export default function Landing() {
                   </div>
                 ))}
               </div>
-              <Link to="/dashboard" className="inline-block mt-8">
+              <Link to="/auth" className="inline-block mt-8">
                 <Button size="lg" variant="gradient">
                   Trải nghiệm miễn phí
                   <ArrowRight className="w-4 h-4" />
@@ -268,7 +271,7 @@ export default function Landing() {
               Tham gia cùng hàng nghìn học sinh đang sử dụng KMA-RES AI 
               để đạt kết quả học tập tốt hơn.
             </p>
-            <Link to="/dashboard">
+            <Link to="/auth">
               <Button size="xl" variant="hero">
                 Bắt đầu ngay hôm nay
                 <GraduationCap className="w-5 h-5" />
