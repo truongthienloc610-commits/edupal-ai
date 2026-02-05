@@ -93,7 +93,7 @@ export default function Dashboard() {
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
           {/* AI Assistant Card */}
-          <Card className="p-6">
+          <Card className="p-6 liquid-glass">
             <div className="flex items-start gap-4">
               <AIAvatar size="md" />
               <div className="flex-1">
@@ -121,7 +121,7 @@ export default function Dashboard() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {quickActions.map((action) => (
                 <Link key={action.path} to={action.path}>
-                  <Card className="p-4 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer group">
+                  <Card className="p-4 glass-card hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer group">
                     <div className={`w-10 h-10 rounded-xl ${action.color} flex items-center justify-center mb-3`}>
                       <action.icon className="w-5 h-5 text-primary-foreground" />
                     </div>
@@ -140,7 +140,7 @@ export default function Dashboard() {
           </div>
 
           {/* Today's Tasks */}
-          <Card className="p-6">
+          <Card className="p-6 glass-card">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-lg">Nhiệm vụ hôm nay</h3>
               <span className="text-sm text-muted-foreground">{completedTasks}/{totalTasks} hoàn thành</span>
@@ -175,7 +175,7 @@ export default function Dashboard() {
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Upcoming Events */}
-          <Card className="p-6">
+          <Card className="p-6 glass-card">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-lg">Sắp tới</h3>
               <Calendar className="w-5 h-5 text-muted-foreground" />
@@ -205,7 +205,7 @@ export default function Dashboard() {
           </Card>
 
           {/* Study Progress */}
-          <Card className="p-6">
+          <Card className="p-6 glass-card">
             <h3 className="font-semibold text-lg mb-4">Tiến độ tuần này</h3>
             <div className="space-y-4">
               {[
@@ -226,7 +226,7 @@ export default function Dashboard() {
           </Card>
 
           {/* Quick AI Consult */}
-          <Card className="p-6 bg-gradient-to-br from-primary/5 to-wellness/5">
+          <Card className="p-6 liquid-glass">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
                 <MessageCircle className="w-5 h-5 text-primary-foreground" />
