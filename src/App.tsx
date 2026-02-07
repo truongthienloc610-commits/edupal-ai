@@ -20,6 +20,7 @@ import AIConsult from "./pages/AIConsult";
 import Settings from "./pages/Settings";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
+import Documents from "./pages/Documents";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ const App = () => (
             <Route path="/wellness" element={<ProtectedRoute><Wellness /></ProtectedRoute>} />
             <Route path="/career" element={<ProtectedRoute><Career /></ProtectedRoute>} />
             <Route path="/ai-consult" element={<ProtectedRoute><AIConsult /></ProtectedRoute>} />
+            <Route path="/documents" element={<ProtectedRoute><Documents /></ProtectedRoute>} />
             <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
             <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFound />} />

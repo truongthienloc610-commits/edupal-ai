@@ -17,6 +17,7 @@ import {
   Menu,
   X,
   LogOut,
+  FileText,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -31,6 +32,7 @@ const menuItems = [
   { path: "/wellness", label: "Sức khỏe tinh thần", icon: Heart },
   { path: "/career", label: "Nghề nghiệp", icon: Briefcase },
   { path: "/ai-consult", label: "Hỏi AI", icon: MessageCircle },
+  { path: "/documents", label: "Tài liệu PDF", icon: FileText },
 ];
 
 const bottomItems = [
