@@ -82,8 +82,8 @@ export default function Documents() {
       return;
     }
 
-    if (file.size > 10 * 1024 * 1024) {
-      toast({ title: "File quá lớn (tối đa 10MB)", variant: "destructive" });
+    if (file.size > 1024 * 1024 * 1024) {
+      toast({ title: "File quá lớn (tối đa 1GB)", variant: "destructive" });
       return;
     }
 
@@ -91,7 +91,15 @@ export default function Documents() {
     setUploadProgress(30);
 
     try {
-      const filePath = `${user.id}/${Date.now()}_${file.name}`;
+      // Sanitize filename: remove special chars, replace spaces with underscores
+      const sanitizedName = file.name
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d")
+        .replace(/Đ/g, "D")
+        .replace(/[^a-zA-Z0-9._-]/g, "_")
+        .replace(/_+/g, "_");
+      const filePath = `${user.id}/${Date.now()}_${sanitizedName}`;
 
       setUploadProgress(50);
       const { error: uploadError } = await supabase.storage
@@ -284,7 +292,7 @@ export default function Documents() {
               <Progress value={uploadProgress} className="mt-3 h-2" />
             )}
             <p className="text-xs text-muted-foreground mt-2 text-center">
-              Hỗ trợ PDF, tối đa 10MB
+              Hỗ trợ PDF, tối đa 1GB
             </p>
           </Card>
 
