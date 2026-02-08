@@ -10,13 +10,9 @@ import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Settings as SettingsIcon,
-  User,
   Bell,
   Palette,
-  Shield,
   Save,
-  Eye,
-  EyeOff,
   Accessibility,
   Sun,
   Moon,
@@ -26,13 +22,6 @@ import { toast } from "sonner";
 
 export default function Settings() {
   const { theme, setTheme } = useTheme();
-  const [profile, setProfile] = useState({
-    name: "Nguyễn Văn A",
-    email: "nguyenvana@email.com",
-    school: "Trường THPT ABC",
-    grade: "Lớp 12",
-  });
-
   const [notifications, setNotifications] = useState({
     studyReminders: true,
     weeklyReports: true,
@@ -59,12 +48,8 @@ export default function Settings() {
         icon={<SettingsIcon className="w-6 h-6" />}
       />
 
-      <Tabs defaultValue="profile" className="max-w-3xl">
+      <Tabs defaultValue="appearance" className="max-w-3xl">
         <TabsList className="mb-6 liquid-glass">
-          <TabsTrigger value="profile" className="gap-2">
-            <User className="w-4 h-4" />
-            Hồ sơ
-          </TabsTrigger>
           <TabsTrigger value="appearance" className="gap-2">
             <Palette className="w-4 h-4" />
             Giao diện
@@ -79,59 +64,6 @@ export default function Settings() {
           </TabsTrigger>
         </TabsList>
 
-        {/* Profile Settings */}
-        <TabsContent value="profile">
-          <Card className="p-6 glass-card">
-            <h3 className="font-semibold text-lg mb-6">Thông tin cá nhân</h3>
-            <div className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="name">Họ và tên</Label>
-                  <Input
-                    id="name"
-                    value={profile.name}
-                    onChange={(e) => setProfile({ ...profile, name: e.target.value })}
-                    className="mt-1"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={profile.email}
-                    onChange={(e) => setProfile({ ...profile, email: e.target.value })}
-                    className="mt-1"
-                  />
-                </div>
-              </div>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="school">Trường học</Label>
-                  <Input
-                    id="school"
-                    value={profile.school}
-                    onChange={(e) => setProfile({ ...profile, school: e.target.value })}
-                    className="mt-1"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="grade">Lớp/Khóa</Label>
-                  <Input
-                    id="grade"
-                    value={profile.grade}
-                    onChange={(e) => setProfile({ ...profile, grade: e.target.value })}
-                    className="mt-1"
-                  />
-                </div>
-              </div>
-              <Button onClick={handleSave} variant="gradient">
-                <Save className="w-4 h-4" />
-                Lưu thay đổi
-              </Button>
-            </div>
-          </Card>
-        </TabsContent>
 
         {/* Appearance Settings */}
         <TabsContent value="appearance">
