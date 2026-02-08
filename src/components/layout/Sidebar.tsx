@@ -18,6 +18,7 @@ import {
   X,
   LogOut,
   FileText,
+  UserCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -36,6 +37,7 @@ const menuItems = [
 ];
 
 const bottomItems = [
+  { path: "/profile", label: "Hồ sơ cá nhân", icon: UserCircle },
   { path: "/settings", label: "Cài đặt", icon: Settings },
   { path: "/about", label: "Giới thiệu", icon: Info },
 ];

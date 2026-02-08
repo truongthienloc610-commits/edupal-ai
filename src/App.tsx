@@ -18,6 +18,7 @@ import Wellness from "./pages/Wellness";
 import Career from "./pages/Career";
 import AIConsult from "./pages/AIConsult";
 import Settings from "./pages/Settings";
+import Profile from "./pages/Profile";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import Documents from "./pages/Documents";
@@ -46,6 +47,7 @@ const App = () => (
             <Route path="/ai-consult" element={<ProtectedRoute><AIConsult /></ProtectedRoute>} />
             <Route path="/documents" element={<ProtectedRoute><Documents /></ProtectedRoute>} />
             <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
