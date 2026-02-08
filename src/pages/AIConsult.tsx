@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { AIAvatar } from "@/components/shared/AIAvatar";
+import TypingIndicator from "@/components/shared/TypingIndicator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { streamChat } from "@/lib/ai";
@@ -198,7 +199,7 @@ export default function AIConsult() {
                 <div className="flex items-start gap-3">
                   <AIAvatar size="sm" />
                   <div className="bg-muted rounded-2xl p-4">
-                    <Loader2 className="w-5 h-5 animate-spin text-primary" />
+                    <TypingIndicator />
                   </div>
                 </div>
               )}

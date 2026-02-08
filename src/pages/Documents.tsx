@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { AIAvatar } from "@/components/shared/AIAvatar";
+import TypingIndicator from "@/components/shared/TypingIndicator";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -430,7 +431,7 @@ export default function Documents() {
                   {chatLoading && chatMessages[chatMessages.length - 1]?.role === "user" && (
                     <div className="flex justify-start">
                       <div className="bg-muted rounded-2xl px-4 py-3">
-                        <Loader2 className="w-4 h-4 animate-spin text-muted-foreground" />
+                        <TypingIndicator />
                       </div>
                     </div>
                   )}
