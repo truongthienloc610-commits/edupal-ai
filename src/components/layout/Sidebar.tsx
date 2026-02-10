@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/contexts/AuthContext";
 
 const menuItems = [
@@ -49,7 +50,7 @@ export const Sidebar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { signOut, profile } = useAuth();
+  const { signOut, profile, user } = useAuth();
 
   const handleSignOut = async () => {
     await signOut();
@@ -113,11 +114,24 @@ export const Sidebar = () => {
 
       {/* User Info & Sign Out */}
       <div className="px-2 pb-4 space-y-2">
-        {profile && !collapsed && (
-          <div className="px-3 py-2 text-sm text-sidebar-foreground/70 truncate">
-            {profile.display_name || "Người dùng"}
-          </div>
-        )}
+        <div className={cn("flex items-center gap-3 px-3 py-2", collapsed && "justify-center")}>
+          <Avatar className="w-8 h-8 shrink-0 border border-sidebar-border">
+            <AvatarImage src={profile?.avatar_url || undefined} alt="Avatar" />
+            <AvatarFallback className="text-xs bg-primary/10 text-primary font-semibold">
+              {profile?.display_name?.charAt(0)?.toUpperCase() || "U"}
+            </AvatarFallback>
+          </Avatar>
+          {!collapsed && (
+            <div className="flex flex-col min-w-0">
+              <span className="text-sm font-medium text-sidebar-foreground truncate">
+                {profile?.display_name || "Người dùng"}
+              </span>
+              <span className="text-xs text-sidebar-foreground/50 truncate">
+                {user?.email || ""}
+              </span>
+            </div>
+          )}
+        </div>
         <Button
           variant="ghost"
           size="sm"
