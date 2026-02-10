@@ -212,7 +212,7 @@ export default function Timetable() {
               </TableRow>
             ) : (
               sorted.map((entry) => (
-                <TableRow key={entry.id}>
+                <TableRow key={entry.id} className="group cursor-pointer" onClick={() => openEdit(entry)}>
                   <TableCell className="font-medium">{entry.day}</TableCell>
                   <TableCell>{entry.session}</TableCell>
                   <TableCell className="text-muted-foreground text-sm">{SESSION_TIMES[entry.session]}</TableCell>
@@ -223,11 +223,11 @@ export default function Timetable() {
                   </TableCell>
                   <TableCell className="text-muted-foreground">{entry.note || "—"}</TableCell>
                   <TableCell className="text-right">
-                    <div className="flex justify-end gap-1">
-                      <Button variant="ghost" size="icon" onClick={() => openEdit(entry)} className="h-8 w-8">
+                    <div className="flex justify-end gap-1" onClick={(e) => e.stopPropagation()}>
+                      <Button variant="ghost" size="icon" onClick={() => openEdit(entry)} className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity">
                         <Pencil className="w-4 h-4" />
                       </Button>
-                      <Button variant="ghost" size="icon" onClick={() => handleDelete(entry.id)} className="h-8 w-8 text-destructive hover:text-destructive">
+                      <Button variant="ghost" size="icon" onClick={() => handleDelete(entry.id)} className="h-8 w-8 text-destructive hover:text-destructive opacity-0 group-hover:opacity-100 transition-opacity">
                         <Trash2 className="w-4 h-4" />
                       </Button>
                     </div>
