@@ -19,6 +19,7 @@ import {
   LogOut,
   FileText,
   UserCircle,
+  CalendarDays,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -34,6 +35,7 @@ const menuItems = [
   { path: "/career", label: "Nghề nghiệp", icon: Briefcase },
   { path: "/ai-consult", label: "Hỏi AI", icon: MessageCircle },
   { path: "/documents", label: "Tài liệu PDF", icon: FileText },
+  { path: "/timetable", label: "Thời khóa biểu", icon: CalendarDays },
 ];
 
 const bottomItems = [
@@ -86,7 +88,7 @@ export const Sidebar = () => {
         </div>
         {!collapsed && (
           <div className="flex flex-col">
-            <span className="font-bold text-sidebar-foreground text-lg">KMA-RES AI</span>
+            <span className="font-bold text-sidebar-foreground text-lg">KMA-RES EduAI</span>
             <span className="text-xs text-sidebar-foreground/50">Trợ lý học tập thông minh</span>
           </div>
         )}
