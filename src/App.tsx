@@ -22,6 +22,7 @@ import Profile from "./pages/Profile";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import Documents from "./pages/Documents";
+import Timetable from "./pages/Timetable";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ const App = () => (
             <Route path="/career" element={<ProtectedRoute><Career /></ProtectedRoute>} />
             <Route path="/ai-consult" element={<ProtectedRoute><AIConsult /></ProtectedRoute>} />
             <Route path="/documents" element={<ProtectedRoute><Documents /></ProtectedRoute>} />
+            <Route path="/timetable" element={<ProtectedRoute><Timetable /></ProtectedRoute>} />
             <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/about" element={<About />} />
