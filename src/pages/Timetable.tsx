@@ -11,6 +11,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { CalendarDays, Plus, Pencil, Trash2, Download, Eye } from "lucide-react";
 import { toast } from "sonner";
+import { ReminderSettings } from "@/components/timetable/ReminderSettings";
 
 const DAYS = ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"];
 const SESSIONS = ["Sáng", "Chiều", "Tối"];
@@ -181,6 +182,7 @@ export default function Timetable() {
         </div>
 
         <div className="flex gap-2">
+          <ReminderSettings />
           <Button variant="outline" onClick={exportPDF} className="gap-2">
             <Download className="w-4 h-4" /> Xuất PDF
           </Button>
