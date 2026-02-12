@@ -1,11 +1,14 @@
 import { ReactNode } from "react";
 import { Sidebar } from "./Sidebar";
+import { useStudyReminder } from "@/hooks/useStudyReminder";
 
 interface DashboardLayoutProps {
   children: ReactNode;
 }
 
 export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
+  useStudyReminder();
+
   return (
     <div className="flex min-h-screen bg-background">
       <Sidebar />
