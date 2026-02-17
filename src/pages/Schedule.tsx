@@ -17,6 +17,7 @@ import {
   Calendar,
   Target,
 } from "lucide-react";
+import { ReminderSettings } from "@/components/timetable/ReminderSettings";
 
 interface Task {
   id: string;
@@ -228,9 +229,7 @@ export default function Schedule() {
               Dựa trên phân tích, khung giờ <strong className="text-foreground">8:00 - 10:00</strong> là 
               lúc bạn học hiệu quả nhất. Hãy ưu tiên môn khó vào thời điểm này!
             </p>
-            <Button variant="outline" size="sm" className="w-full">
-              Tùy chỉnh nhắc nhở
-            </Button>
+            <ReminderSettings />
           </Card>
 
           {/* Effective Hours */}
